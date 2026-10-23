@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Shared database migrations are owned by the StageKit repository.
+/supabase/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
