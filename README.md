@@ -1,5 +1,22 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Database migrations
+
+Local Edge shares the `stagekit-prod` Supabase project, but keeps its data in
+the `local_edge` schema. The shared database's migration history is owned by
+the StageKit repository, so the two applications never compete to update the
+same Supabase migration ledger.
+
+For database changes, add a versioned migration in:
+
+```bash
+/Users/brianjohnson/Documents/Development/stagekit/supabase/migrations
+```
+
+The initial Local Edge migration is `20261023000000_create_local_edge.sql`.
+Run `supabase db push` from the StageKit repository to deploy it. Do not apply
+ad-hoc schema changes in the SQL Editor.
+
 ## Getting Started
 
 First, run the development server:

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EdgeNearby — Find a local skate sharpener",
+  title: "Local Edge — Find a local skate sharpener",
   description: "A neighborhood marketplace for skate sharpening.",
 };
 
