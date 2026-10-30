@@ -19,6 +19,31 @@ ad-hoc schema changes in the SQL Editor.
 
 ## Getting Started
 
+## Supabase Auth configuration
+
+Local Edge and StageKit share the `stagekit-prod` Auth tenant, but Local Edge
+must only send users back to its own callback. The app uses cookie-backed PKCE:
+email links return to `/auth/callback`, which exchanges the `code` for a
+session and then redirects to `/onboard`.
+
+In **Supabase Dashboard → Authentication → URL Configuration**, add these
+exact Redirect URLs (alongside, not instead of, the existing StageKit URLs):
+
+```
+https://local-edge-brown.vercel.app/auth/callback
+http://localhost:3000/auth/callback
+```
+
+If local development uses a different port, add that exact callback URL too.
+Do not add the StageKit URL as a Local Edge redirect destination.
+
+In **Authentication → Email Templates**, confirmation and magic-link templates
+must preserve Supabase's redirect parameter. Use the standard
+`{{ .ConfirmationURL }}` link (or a link that retains its complete query
+string); do not hard-code the StageKit origin or a fixed callback URL. No Local
+Edge database migrations are required. This changes neither StageKit
+membership nor its RLS policies.
+
 First, run the development server:
 
 ```bash
